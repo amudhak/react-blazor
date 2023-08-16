@@ -1,0 +1,18 @@
+﻿@page "/"
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Index</PageTitle>
+
+<RadzenRow id="blazorReact"></RadzenRow>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            IJSObjectReference module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./src/index.js");
+            await module.InvokeVoidAsync("RenderReact");
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}
