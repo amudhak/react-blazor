@@ -1,5 +1,4 @@
 ﻿@page "/counter"
-@inject IJSRuntime IJSRuntime 
 
 <PageTitle>Counter</PageTitle>
 
@@ -9,15 +8,11 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-<div id="reactContainer"></div>
-
 @code {
     private int currentCount = 0;
 
     async void IncrementCount()
     {
         currentCount++;
-
-        await IJSRuntime.InvokeVoidAsync("RenderReact");
     }
 }
